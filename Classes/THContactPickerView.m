@@ -22,6 +22,7 @@
 @property (nonatomic, strong) UILabel *placeholderLabel;
 @property (nonatomic, strong) UILabel *promptLabel;
 @property (nonatomic, assign) CGFloat lineHeight;
+@property (nonatomic, strong) UIImage *removeImage;
 @property (nonatomic, strong) THContactTextField *textField;
 @property (nonatomic, strong) THContactViewStyle *contactViewStyle;
 @property (nonatomic, strong) THContactViewStyle *contactViewSelectedStyle;
@@ -36,6 +37,7 @@
 #define kVerticalPadding			2   // amount of padding above and below each contact view
 #define kTextViewMinWidth			20  // minimum width of trailing text view
 #define KMaxNumberOfLinesDefault	2
+#define kRemoveImageWidth           40
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -154,7 +156,13 @@
     self.textField.text = @"";
     
     THContactView *contactView = [[THContactView alloc] initWithName:name style:self.contactViewStyle selectedStyle:self.contactViewSelectedStyle showComma:!self.limitToOne];
-    contactView.maxWidth = self.frame.size.width - self.promptLabel.frame.origin.x - 2 * kHorizontalPadding - 2 * kHorizontalSidePadding;
+    if (self.removeImage != nil) {
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:self.removeImage];
+        imageView.frame = CGRectMake(self.frame.size.width - self.promptLabel.frame.origin.x - 2, 0, kRemoveImageWidth, kRemoveImageWidth);
+        [imageView setContentMode:UIViewContentModeScaleAspectFit];
+        [contactView addSubview:imageView];
+    }
+    contactView.maxWidth = self.frame.size.width + kRemoveImageWidth - self.promptLabel.frame.origin.x - 2 * kHorizontalPadding - 2 * kHorizontalSidePadding;
     contactView.minWidth = kTextViewMinWidth + 2 * kHorizontalPadding;
     contactView.keyboardAppearance = self.keyboardAppearance;
     contactView.delegate = self;
@@ -226,7 +234,7 @@
 
 - (void)setContactViewStyle:(THContactViewStyle *)style selectedStyle:(THContactViewStyle *)selectedStyle {
     self.contactViewStyle = style;
-    self.textField.textColor = style.textColor;
+    self.textField.textColor = [UIColor colorWithRed:44.0/255 green:44.0/255 blue:44.0/255 alpha:1.0];
     self.contactViewSelectedStyle = selectedStyle;
 
     for (id contactKey in self.contactKeys){
@@ -241,6 +249,12 @@
         } else {
             [contactView unSelect];
         }
+    }
+}
+
+- (void)setRemoveImage:(UIImage*)image {
+    if (image != nil) {
+        self.removeImage = image;
     }
 }
 

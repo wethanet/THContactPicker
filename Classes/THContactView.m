@@ -15,8 +15,8 @@
 
 @implementation THContactView
 
-#define kHorizontalPadding 3
-#define kVerticalPadding 2
+#define kHorizontalPadding 5
+#define kVerticalPadding 5
 
 #define kDefaultBorderWidth 1
 #define kDefaultCornerRadiusFactor 5
@@ -94,12 +94,9 @@
     // Create Label
     self.label = [[UILabel alloc] init];
     self.label.backgroundColor = [UIColor clearColor];
-    if (self.showComma){
-        self.label.text = [NSString stringWithFormat:@"%@,", self.name];
-    } else {
-        self.label.text = self.name;
-    }
+    self.label.text = self.name;
     [self addSubview:self.label];
+
     
     self.textField = [[THContactTextField alloc] init];
 	self.textField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -145,7 +142,7 @@
 
     
     // Adjust view frame
-    self.bounds = CGRectMake(0, 0, frame.size.width + 2 * kHorizontalPadding, frame.size.height + 2 * kVerticalPadding);
+    self.bounds = CGRectMake(0, 0, frame.size.width + 2 * kHorizontalPadding + 20, frame.size.height + 2 * kVerticalPadding);
     
     // Create gradient layer
     if (self.gradientLayer == nil){

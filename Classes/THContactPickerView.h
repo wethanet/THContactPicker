@@ -42,5 +42,6 @@
 - (void)setPromptLabelText:(NSString *)text;
 - (void)setPromptLabelTextColor:(UIColor *)color;
 - (void)setFont:(UIFont *)font;
+- (void)setRemoveImage:(UIImage*)image;
 
 @end
