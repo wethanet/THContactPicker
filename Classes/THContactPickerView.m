@@ -254,7 +254,7 @@
     }
 }
 
-- (void)setRemoveImage:(UIImage*)image {
+- (void)setRightImage:(UIImage *)image {
     if (image != nil) {
         self.removeImage = image;
     }
