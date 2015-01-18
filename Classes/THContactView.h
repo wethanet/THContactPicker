@@ -30,6 +30,7 @@
 @property (nonatomic, assign) BOOL showComma;
 @property (nonatomic, assign) CGFloat maxWidth;
 @property (nonatomic, assign) CGFloat minWidth;
+@property (nonatomic, assign) CGFloat minHeight;
 @property (nonatomic, assign) id <THContactViewDelegate>delegate;
 @property (nonatomic, strong) CAGradientLayer *gradientLayer;
 

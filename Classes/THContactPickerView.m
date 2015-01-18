@@ -31,11 +31,12 @@
 
 @implementation THContactPickerView
 
-#define kVerticalViewPadding		5   // the amount of padding on top and bottom of the view
+#define kVerticalViewPadding		10   // the amount of padding on top and bottom of the view
 #define kHorizontalPadding			0   // the amount of padding to the left and right of each contact view
 #define kHorizontalSidePadding		10  // the amount of padding on the left and right of the view
 #define kVerticalPadding			2   // amount of padding above and below each contact view
 #define kTextViewMinWidth			20  // minimum width of trailing text view
+#define kTextVideMinHeight          28
 #define KMaxNumberOfLinesDefault	2
 #define kRemoveImageWidth           40
 
@@ -164,6 +165,7 @@
     }
     contactView.maxWidth = self.frame.size.width + kRemoveImageWidth - self.promptLabel.frame.origin.x - 2 * kHorizontalPadding - 2 * kHorizontalSidePadding;
     contactView.minWidth = kTextViewMinWidth + 2 * kHorizontalPadding;
+    contactView.minHeight = 28;
     contactView.keyboardAppearance = self.keyboardAppearance;
     contactView.delegate = self;
 	[contactView setFont:self.font];

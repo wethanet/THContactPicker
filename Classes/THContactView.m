@@ -15,34 +15,34 @@
 
 @implementation THContactView
 
-#define kHorizontalPadding 5
+#define kHorizontalPadding 10
 #define kVerticalPadding 5
 
-#define kDefaultBorderWidth 1
-#define kDefaultCornerRadiusFactor 5
+#define kDefaultBorderWidth 3
+#define kDefaultCornerRadiusFactor 0
 
-#define kColorText [UIColor blackColor]
-#define kColorGradientTop [UIColor colorWithRed:219.0/255.0 green:229.0/255.0 blue:249.0/255.0 alpha:1.0]
-#define kColorGradientBottom [UIColor colorWithRed:188.0/255.0 green:205.0/255.0 blue:242.0/255.0 alpha:1.0]
-#define kColorBorder [UIColor colorWithRed:127.0/255.0 green:127.0/255.0 blue:218.0/255.0 alpha:1.0]
+#define kColorText [UIColor whiteColor]
+#define kColorGradientTop [UIColor colorWithRed:56.0/255.0 green:217.0/255.0 blue:195.0/255.0 alpha:1.0]
+#define kColorGradientBottom [UIColor colorWithRed:56.0/255.0 green:217.0/255.0 blue:195.0/255.0 alpha:1.0]
+#define kColorBorder [UIColor whiteColor]
 
 #define kColorSelectedText [UIColor whiteColor]
-#define kColorSelectedGradientTop [UIColor colorWithRed:79.0/255.0 green:132.0/255.0 blue:255.0/255.0 alpha:1.0]
-#define kColorSelectedGradientBottom [UIColor colorWithRed:73.0/255.0 green:58.0/255.0 blue:242.0/255.0 alpha:1.0]
-#define kColorSelectedBorder [UIColor colorWithRed:56.0/255.0 green:0/255.0 blue:233.0/255.0 alpha:1.0]
+#define kColorSelectedGradientTop [UIColor colorWithRed:46.0/255.0 green:208.0/255.0 blue:105.0/255.0 alpha:1.0]
+#define kColorSelectedGradientBottom [UIColor colorWithRed:46.0/255.0 green:208.0/255.0 blue:105.0/255.0 alpha:1.0]
+#define kColorSelectedBorder [UIColor whiteColor]
 
-#define k7DefaultBorderWidth 0
-#define k7DefaultCornerRadiusFactor 5
+#define k7DefaultBorderWidth 3
+#define k7DefaultCornerRadiusFactor 0
 
-#define k7ColorText [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]
-#define k7ColorGradientTop  nil
-#define k7ColorGradientBottom  nil
-#define k7ColorBorder nil
+#define k7ColorText [UIColor whiteColor]
+#define k7ColorGradientTop  [UIColor colorWithRed:56.0/255.0 green:217.0/255.0 blue:195.0/255.0 alpha:1.0]
+#define k7ColorGradientBottom  [UIColor colorWithRed:56.0/255.0 green:217.0/255.0 blue:195.0/255.0 alpha:1.0]
+#define k7ColorBorder [UIColor whiteColor]
 
 #define k7ColorSelectedText [UIColor whiteColor]
-#define k7ColorSelectedGradientTop [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]
-#define k7ColorSelectedGradientBottom [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]
-#define k7ColorSelectedBorder nil
+#define k7ColorSelectedGradientTop [UIColor colorWithRed:255.0/255.0 green:64.0/255.0 blue:79.0/255.0 alpha:1.0]
+#define k7ColorSelectedGradientBottom [UIColor colorWithRed:255.0/255.0 green:64.0/255.0 blue:79.0/255.0 alpha:1.0]
+#define k7ColorSelectedBorder [UIColor whiteColor]
 
 - (id)initWithName:(NSString *)name {
     if ([self initWithName:name style:nil selectedStyle:nil]) {
@@ -136,6 +136,10 @@
                 frame.size.width = maxWidth;
             }
         }
+    }
+    
+    if (frame.size.height < self.minHeight) {
+        frame.size.height = self.minHeight;
     }
 
     self.label.frame = frame;
