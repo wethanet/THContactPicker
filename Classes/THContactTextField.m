@@ -14,6 +14,7 @@
     self = [super init];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textPlaceHolderShouldHide:) name:UITextFieldTextDidBeginEditingNotification object:nil];
     }
     return self;
 }
@@ -48,6 +49,14 @@
         }
     }
     [super deleteBackward];
+}
+
+- (void)textPlaceHolderShouldHide:(NSNotification*)notification {
+    if (notification.object == self) { //Since THContactView.textView is a THContactTextField
+        if (self.delegate && [self.delegate respondsToSelector:@selector(textPlaceHolderShouldHide:)]){
+            [self.delegate textPlaceHolderShouldHide:self];
+        }
+    }
 }
 
 - (void)textFieldTextDidChange:(NSNotification *)notification {

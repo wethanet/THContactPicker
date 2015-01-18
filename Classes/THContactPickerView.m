@@ -32,12 +32,12 @@
 @implementation THContactPickerView
 
 #define kVerticalViewPadding		14   // the amount of padding on top and bottom of the view
-#define kHorizontalPadding			0   // the amount of padding to the left and right of each contact view
+#define kHorizontalPadding			2   // the amount of padding to the left and right of each contact view
 #define kHorizontalSidePadding		10  // the amount of padding on the left and right of the view
-#define kVerticalPadding			2   // amount of padding above and below each contact view
+#define kVerticalPadding			5   // amount of padding above and below each contact view
 #define kTextViewMinWidth			20  // minimum width of trailing text view
 #define kTextVideMinHeight          28
-#define KMaxNumberOfLinesDefault	2
+#define KMaxNumberOfLinesDefault	5
 #define kRemoveImageWidth           0
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -86,8 +86,8 @@
     // Create TextView
     self.textField = [[THContactTextField alloc] init];
     self.textField.delegate = self;
+    self.textField.tintColor = self.placeholderLabel.textColor;
     self.textField.autocorrectionType = UITextAutocorrectionTypeNo;
-    
     self.backgroundColor = [UIColor whiteColor];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture)];
@@ -382,7 +382,7 @@
 	// Now add the textView after the contact views
 	CGFloat minWidth = kTextViewMinWidth + 2 * kHorizontalPadding;
 	CGFloat textViewHeight = self.lineHeight - 2 * kVerticalPadding;
-	CGRect textViewFrame = CGRectMake(0, 0, self.textField.frame.size.width, textViewHeight);
+	CGRect textViewFrame = CGRectMake(0, kVerticalViewPadding, self.textField.frame.size.width, textViewHeight + kVerticalViewPadding);
 	
 	// Check if we can add the text field on the same line as the last contact view
 	if (self.frame.size.width - kHorizontalSidePadding - _frameOfLastView.origin.x - _frameOfLastView.size.width - minWidth >= 0){ // add to the same line
@@ -402,11 +402,11 @@
 		}
 	}
 	
-	textViewFrame.origin.y = _lineCount * self.lineHeight + kVerticalPadding + self.verticalPadding;
+	textViewFrame.origin.y = _lineCount * self.lineHeight + kVerticalViewPadding + self.verticalPadding;
 	self.textField.frame = textViewFrame;
 	
 	// Add text view if it hasn't been added
-	self.textField.center = CGPointMake(self.textField.center.x, _lineCount * self.lineHeight + textViewHeight / 2 + kVerticalPadding + self.verticalPadding);
+	self.textField.center = CGPointMake(self.textField.center.x, _lineCount * self.lineHeight + textViewHeight / 2 + 9 + self.verticalPadding);
 	
 	if (self.textField.superview == nil){
 		[self.scrollView addSubview:self.textField];
@@ -498,6 +498,10 @@
 		return [self.delegate contactPickerTextFieldShouldReturn:textField];
 	}
 	return YES;
+}
+
+- (void)textPlaceHolderShouldHide:(THContactTextField *)textView{
+    self.placeholderLabel.hidden = YES;
 }
 
 #pragma mark - THContactViewDelegate Functions

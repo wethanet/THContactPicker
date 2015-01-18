@@ -13,7 +13,7 @@
 @optional
 - (void)textFieldDidChange:(THContactTextField *)textField;
 - (void)textFieldDidHitBackspaceWithEmptyText:(THContactTextField *)textField;
-
+- (void)textPlaceHolderShouldHide:(THContactTextField*)textField;
 @end
 
 @interface THContactTextField : UITextField
