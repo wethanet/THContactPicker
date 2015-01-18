@@ -146,7 +146,7 @@
 
     
     // Adjust view frame
-    self.bounds = CGRectMake(0, 0, frame.size.width + 2 * kHorizontalPadding + 20, frame.size.height + 2 * kVerticalPadding);
+    self.bounds = CGRectMake(0, 0, frame.size.width + 2 * kHorizontalPadding, frame.size.height + 2 * kVerticalPadding);
     
     // Create gradient layer
     if (self.gradientLayer == nil){

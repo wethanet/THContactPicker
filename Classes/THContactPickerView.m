@@ -22,7 +22,7 @@
 @property (nonatomic, strong) UILabel *placeholderLabel;
 @property (nonatomic, strong) UILabel *promptLabel;
 @property (nonatomic, assign) CGFloat lineHeight;
-@property (nonatomic, strong) UIImage *removeImage;
+@property (nonatomic, strong) UIImage *rightImage;
 @property (nonatomic, strong) THContactTextField *textField;
 @property (nonatomic, strong) THContactViewStyle *contactViewStyle;
 @property (nonatomic, strong) THContactViewStyle *contactViewSelectedStyle;
@@ -31,14 +31,14 @@
 
 @implementation THContactPickerView
 
-#define kVerticalViewPadding		10   // the amount of padding on top and bottom of the view
+#define kVerticalViewPadding		14   // the amount of padding on top and bottom of the view
 #define kHorizontalPadding			0   // the amount of padding to the left and right of each contact view
 #define kHorizontalSidePadding		10  // the amount of padding on the left and right of the view
 #define kVerticalPadding			2   // amount of padding above and below each contact view
 #define kTextViewMinWidth			20  // minimum width of trailing text view
 #define kTextVideMinHeight          28
 #define KMaxNumberOfLinesDefault	2
-#define kRemoveImageWidth           40
+#define kRemoveImageWidth           0
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -157,11 +157,11 @@
     self.textField.text = @"";
     
     THContactView *contactView = [[THContactView alloc] initWithName:name style:self.contactViewStyle selectedStyle:self.contactViewSelectedStyle showComma:!self.limitToOne];
-    if (self.removeImage != nil) {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:self.removeImage];
+    if (self.rightImage != nil) {
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:self.rightImage];
         imageView.frame = CGRectMake(self.frame.size.width - self.promptLabel.frame.origin.x - 2, 0, kRemoveImageWidth, kRemoveImageWidth);
         [imageView setContentMode:UIViewContentModeScaleAspectFit];
-        [contactView addSubview:imageView];
+        //[contactView addSubview:imageView];
     }
     contactView.maxWidth = self.frame.size.width + kRemoveImageWidth - self.promptLabel.frame.origin.x - 2 * kHorizontalPadding - 2 * kHorizontalSidePadding;
     contactView.minWidth = kTextViewMinWidth + 2 * kHorizontalPadding;
@@ -256,7 +256,7 @@
 
 - (void)setRightImage:(UIImage *)image {
     if (image != nil) {
-        self.removeImage = image;
+        self.rightImage = image;
     }
 }
 
