@@ -18,6 +18,7 @@
     }
     
     self.keyboardType = UIKeyboardTypeEmailAddress;
+    self.returnKeyType = UIReturnKeyDone;
     return self;
 }
 
