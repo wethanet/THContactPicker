@@ -16,6 +16,8 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textPlaceHolderShouldHide:) name:UITextFieldTextDidBeginEditingNotification object:nil];
     }
+    
+    self.keyboardType = UIKeyboardTypeEmailAddress
     return self;
 }
 
