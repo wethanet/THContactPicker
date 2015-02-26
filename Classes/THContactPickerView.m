@@ -30,7 +30,7 @@
 
 @implementation THContactPickerView
 
-#define kVerticalViewPadding		14   // the amount of padding on top and bottom of the view
+#define kVerticalViewPadding		10   // the amount of padding on top and bottom of the view
 #define kHorizontalPadding			2   // the amount of padding to the left and right of each contact view
 #define kHorizontalSidePadding		10  // the amount of padding on the left and right of the view
 #define kVerticalPadding			5   // amount of padding above and below each contact view
@@ -353,7 +353,7 @@
 		if (CGRectIsNull(_frameOfLastView)){
 			// First contact view
 			contactViewFrame.origin.x = [self firstLineXOffset];
-			contactViewFrame.origin.y = kVerticalPadding + self.verticalPadding;
+			contactViewFrame.origin.y = 2 + self.verticalPadding;
 		} else {
 			// Check if contact view will fit on the current line
 			CGFloat width = contactViewFrame.size.width + 2 * kHorizontalPadding;
@@ -366,7 +366,7 @@
 				// No space on current line, jump to next line
 				_lineCount++;
 				contactViewFrame.origin.x = kHorizontalSidePadding;
-				contactViewFrame.origin.y = (_lineCount * self.lineHeight) + kVerticalPadding + self.verticalPadding;
+				contactViewFrame.origin.y = (_lineCount * self.lineHeight) + 2 + self.verticalPadding;
 			}
 		}
 		_frameOfLastView = contactViewFrame;
@@ -405,7 +405,7 @@
 	self.textField.frame = textViewFrame;
 	
 	// Add text view if it hasn't been added
-	self.textField.center = CGPointMake(self.textField.center.x, _lineCount * self.lineHeight + textViewHeight / 2 + 9 + self.verticalPadding);
+	self.textField.center = CGPointMake(self.textField.center.x, _lineCount * self.lineHeight + textViewHeight / 2 + 5 + self.verticalPadding);
 	
 	if (self.textField.superview == nil){
 		[self.scrollView addSubview:self.textField];
